@@ -118,7 +118,124 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+/* eslint-disable no-undef */
+// // const controller = new ScrollMagic.Controller();
+// const tween = new TimelineLite();
+// const flightPath = {
+//   curviness: 1.25,
+//   autoRotate: true,
+//   values: [
+//     {
+//       x: 600, y: -20,
+//     },
+//     {
+//       x: 100, y: -200,
+//     },
+//     {
+//       x: -100, y: -300,
+//     },
+//   ],
+// };
+// tween.addTo(
+//   TweenLite.to('.fly', {
+//     duration: 1,
+//     Bezier: flightPath,
+//   }),
+// );
+// console.log(tween);
+// new ScrollMagic.Scene({
+//   duration: 100, // the scene should last for a scroll distance of 100px
+//   offset: 50, // start this scene after scrolling for 50px
+// })
+//   .setPin('#header') // pins the element for the the scene's duration
+//   .addTo(controller);
+gsap.registerPlugin(MotionPathPlugin);
+
+for (var i = 1; i < 7; i = i + 2) {
+  var tween = gsap.timeline();
+  tween.to(".header-img".concat(i), {
+    repeat: -1,
+    yoyo: true,
+    // animationDirection: 'power1.alternate',
+    duration: 7,
+    delay: 1,
+    ease: 'power1.ease-in-out',
+    motionPath: {
+      path: [{
+        x: -20,
+        y: -10
+      }],
+      curviness: 2 // autoRotate: true,
+
+    }
+  });
+}
+
+for (var _i = 0; _i < 7; _i = _i + 2) {
+  var _tween = gsap.timeline();
+
+  _tween.to(".header-img".concat(_i), {
+    repeat: -1,
+    yoyo: true,
+    // animationDirection: 'power1.alternate',
+    duration: 7,
+    delay: 1,
+    ease: 'power1.ease-in-out',
+    motionPath: {
+      path: [{
+        x: 30,
+        y: 20
+      }],
+      curviness: 2 // autoRotate: true,
+
+    }
+  });
+}
+
+var headerCenter = document.querySelector('.header__center');
+var loadingNumbers = document.querySelector('.header__loading');
+headerCenter.addEventListener('click', function () {
+  hidePictures();
+  changeNumbers();
+});
+
+function hidePictures() {
+  var images = document.querySelectorAll(".header-img");
+
+  var _iterator = _createForOfIteratorHelper(images),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var img = _step.value;
+      img.style.display = 'none';
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+}
+
+function changeNumbers() {
+  loadingNumbers.style.display = 'block';
+  var number = 1;
+  var timerNumber = setInterval(function () {
+    number++;
+
+    if (number === 100) {
+      clearInterval(timerNumber);
+    }
+
+    loadingNumbers.textContent = number;
+  }, 20);
+}
 },{}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -147,7 +264,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62221" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51592" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
