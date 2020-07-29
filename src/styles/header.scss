@@ -83,14 +83,25 @@
   }
 }
 
-.header__loading {
+.loading {
   display: none;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 370px;
-  line-height: 25vw;
-  text-align: center;
-  text-transform: uppercase;
-  margin-top: 15vw;
-  color: rgba(100, 60, 90, 0.2);
+
+  &__text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 370px;
+    line-height: 25vw;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 15vw;
+    color: rgba(100, 60, 90, 0.2);
+  }
+
+  &__img {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 200px;
+    height: 200px;
+  }
 }

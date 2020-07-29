@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-undef */
 
 // // const controller = new ScrollMagic.Controller();
@@ -56,7 +57,7 @@ for (let i = 1; i < 7; i = i + 2) {
   });
 }
 
-for (let i = 0; i < 7; i = i + 2) {
+for (let i = 2; i < 7; i = i + 2) {
   const tween = gsap.timeline();
 
   tween.to(`.header-img${i}`, {
@@ -77,7 +78,9 @@ for (let i = 0; i < 7; i = i + 2) {
 }
 
 const headerCenter = document.querySelector('.header__center');
-const loadingNumbers = document.querySelector('.header__loading');
+const loading = document.querySelector('.loading');
+const loadingText = document.querySelector('.loading__text');
+const loadingImg = document.querySelector('.loading__img');
 
 headerCenter.addEventListener('click', function() {
   hidePictures();
@@ -92,8 +95,12 @@ function hidePictures() {
   }
 }
 
+loadingImg.addEventListener('click', function() {
+  loadingImg.src = './images/loading/loading1.png';
+});
+
 function changeNumbers() {
-  loadingNumbers.style.display = 'block';
+  loading.style.display = 'block';
 
   let number = 1;
 
@@ -103,6 +110,6 @@ function changeNumbers() {
     if (number === 100) {
       clearInterval(timerNumber);
     }
-    loadingNumbers.textContent = number;
+    loadingText.textContent = number;
   }, 20);
 }
